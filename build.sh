@@ -8,6 +8,7 @@ git apply ../cmd27.patch
 grep -n "MMC_PROGRAM_CSD" drivers/mmc/host/mediatek/ComboA/sd.c
 sudo ln -sf /usr/bin/python3 /usr/bin/python
 python3 -m lib2to3 -w -n tools/dct/DrvGen.py tools/dct/obj/ChipObj.py tools/dct/utility/util.py || true
+sed -i '1s|.*|#!/usr/bin/env python3|' tools/dct/DrvGen.py
 cd ..
 
 
