@@ -1,0 +1,14 @@
+name: Build CMD27 kernel
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build kernel
+        run: bash build.sh
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Image.gz-dtb
+          path: Image.gz-dtb

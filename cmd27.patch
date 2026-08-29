@@ -1,0 +1,16 @@
+diff --git a/drivers/mmc/host/mediatek/ComboA/sd.c b/drivers/mmc/host/mediatek/ComboA/sd.c
+index 42e96036e..f3a8937e0 100644
+--- a/drivers/mmc/host/mediatek/ComboA/sd.c
++++ b/drivers/mmc/host/mediatek/ComboA/sd.c
+@@ -1533,6 +1533,11 @@ static unsigned int msdc_command_start(struct msdc_host   *host,
+ 	case MMC_WRITE_BLOCK:
+ 		rawcmd |= ((1 << 11) | (1 << 13));
+ 		break;
++	case MMC_PROGRAM_CSD:
++		/* CMD27 is ADTC: one data block written to the card. */
++		if (mmc_cmd_type(cmd) == MMC_CMD_ADTC)
++			rawcmd |= ((1 << 11) | (1 << 13));
++		break;
+ #ifdef CONFIG_MTK_EMMC_CQ_SUPPORT
+ 	case MMC_EXECUTE_READ_TASK:
+ 		rawcmd |= (2 << 11);
