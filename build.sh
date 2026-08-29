@@ -6,6 +6,9 @@ git clone --depth 1 -b android-10.0 https://github.com/yogurt-devs/android_kerne
 cd kernel
 git apply ../cmd27.patch
 grep -n "MMC_PROGRAM_CSD" drivers/mmc/host/mediatek/ComboA/sd.c
+mkdir -p arch/arm64/boot/dts/k69v1_64
+cp ../cust.dtsi arch/arm64/boot/dts/k69v1_64/cust.dtsi
+touch arch/arm64/boot/dts/k69v1_64/cust.dtsi
 cd ..
 
 git clone --depth=1 https://github.com/crdroidandroid/android_prebuilts_clang_host_linux-x86_clang-5484270 clang
