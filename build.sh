@@ -10,6 +10,7 @@ sudo ln -sf /usr/bin/python3 /usr/bin/python
 find tools/dct -name '*.py' | xargs python3 -m lib2to3 -w -n || true
 sed -i '1s|.*|#!/usr/bin/env python3|' tools/dct/DrvGen.py
 grep -rn 'def cmp(a, b):' tools/dct/DrvGen.py > /dev/null || sed -i 's/^import getopt/import getopt\n\ndef cmp(a, b):\n    return (a > b) - (a < b)/' tools/dct/DrvGen.py
+grep -rl 'string.atoi' tools/dct --include='*.py' | xargs -r sed -i 's/string\.atoi(\([^)]*\))/int(\1)/g' || true
 cd ..
 
 
