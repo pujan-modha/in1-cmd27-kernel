@@ -22,6 +22,9 @@ git clone --depth=1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86
 mkdir -p kernel/out
 cd kernel
 make O=out ARCH=arm64 E7746_defconfig
+mkdir -p out/arch/arm64/boot/dts/k69v1_64
+cp ../cust.dtsi out/arch/arm64/boot/dts/k69v1_64/cust.dtsi
+touch out/arch/arm64/boot/dts/k69v1_64/cust.dtsi
 PATH="${GITHUB_WORKSPACE}/clang/bin:${GITHUB_WORKSPACE}/los-4.9-32/bin:${GITHUB_WORKSPACE}/los-4.9-64/bin:${PATH}" \
 make -j$(nproc --all) O=out \
                       ARCH=arm64 \
